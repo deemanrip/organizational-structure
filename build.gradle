@@ -42,5 +42,5 @@ flyway {
     url = 'jdbc:postgresql://localhost:5432/OrgStructure'
     user = 'postgres'
     password = '123'
-    schemas = ['org-structure-schema']
+    schemas = ['org_structure_schema']
 }
