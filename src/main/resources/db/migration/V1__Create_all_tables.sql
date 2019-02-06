@@ -55,7 +55,7 @@ CREATE TABLE org_structure_schema.employee (
 	position_id          integer  NOT NULL ,
 	salary               float8  NOT NULL ,
 	is_department_manager bool DEFAULT FALSE NOT NULL ,
-	line_manager_id      integer  NOT NULL ,
+	line_manager_id      integer   ,
 	grade_id             integer  NOT NULL ,
 	specialization_id    integer  NOT NULL ,
 	CONSTRAINT pk_employee_id PRIMARY KEY ( id )
