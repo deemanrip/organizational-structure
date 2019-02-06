@@ -44,7 +44,7 @@ CREATE TABLE org_structure_schema.employee (
 	id                   serial  NOT NULL ,
 	department_id        integer  NOT NULL ,
 	last_name            varchar(255)  NOT NULL ,
-	name                 varchar(255)  NOT NULL ,
+	first_name           varchar(255)  NOT NULL ,
 	mid_name             varchar(255)   ,
 	sex                  varchar(1)  NOT NULL ,
 	birth_date           date  NOT NULL ,
