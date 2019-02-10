@@ -111,14 +111,14 @@ insert into org_structure_schema.employee (department_id, last_name, first_name,
 values (3, 'Иванова', 'Мария', 'Александровна',  'Ж', '1970-07-22', '+71234567898', 'ivanova215974@test.com',
         '2013-07-01', 3, 75000.0, 9, 3, 7);
 
-insert into org_structure_schema.project(title)
-values ('Проект 1');
-insert into org_structure_schema.project(title)
-values ('Проект 2');
-insert into org_structure_schema.project(title)
-values ('Проект 3');
-insert into org_structure_schema.project(title)
-values ('Проект 4');
+insert into org_structure_schema.project(title, manager_id)
+values ('Проект 1', 2);
+insert into org_structure_schema.project(title, manager_id)
+values ('Проект 2', 6);
+insert into org_structure_schema.project(title, manager_id)
+values ('Проект 3', 6);
+insert into org_structure_schema.project(title, manager_id)
+values ('Проект 4', 9);
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
 values (1, 1, 'UPPER_INTERMEDIATE');
@@ -195,3 +195,40 @@ insert into org_structure_schema.previous_experience (employee_id, company, star
 values (11, 'ООО Новый Тест', '2010-05-01', '2011-04-20');
 insert into org_structure_schema.previous_experience (employee_id, company, start_date, end_date)
 values (11, 'ООО Чистый Код', '2011-05-01', '2013-05-21');
+
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date, end_date)
+values (4, 1, 1, '2016-01-16', '2017-05-11');
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date)
+values (4, 2, 1, '2017-05-12');
+
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date)
+values (3, 1, 1, '2017-01-16');
+
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date, end_date)
+values (2, 4, 4, '2015-04-23', '2016-01-15');
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date)
+values (2, 1, 4, '2016-01-16');
+
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date)
+values (6, 2, 4, '2010-12-05');
+
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date)
+values (11, 3, 3, '2013-07-01');
+
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date, end_date)
+values (10, 3, 2, '2018-08-01', '2019-01-14');
+
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date, end_date)
+values (9, 2, 4, '2014-08-01', '2016-08-10');
+insert into org_structure_schema.internal_project_experience (employee_id, project_id, position_id,
+                                                              start_date)
+values (9, 3, 4, '2016-08-11');
