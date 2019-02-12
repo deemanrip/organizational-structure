@@ -20,7 +20,7 @@ public class DepartmentMapperTest {
     private DepartmentMapper departmentMapper;
 
     @Test
-    public void findDepartmentTest() {
+    public void checkFindDepartmentById() {
         Department department = departmentMapper.findById(1L);
         assertNotNull(department);
         assertEquals("Департамент 1", department.getName());

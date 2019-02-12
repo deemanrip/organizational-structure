@@ -2,8 +2,10 @@ package com.yukhlin.organizational_structure.mapper;
 
 import com.yukhlin.organizational_structure.domain.Department;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 @Mapper
+@Repository
 public interface DepartmentMapper {
 
     @Results(
