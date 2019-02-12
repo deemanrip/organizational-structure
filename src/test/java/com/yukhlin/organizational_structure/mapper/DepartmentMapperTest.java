@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -23,7 +24,21 @@ public class DepartmentMapperTest {
     public void checkFindDepartmentById() {
         Department department = departmentMapper.findById(1L);
         assertNotNull(department);
-        assertEquals("Департамент 1", department.getName());
-        assertEquals(LocalDate.of(2014, 12, 28), department.getCreationDate());
+        checkInitializedDepartment(department, 1L, "Департамент 1", LocalDate.of(2014, 12, 28));
+    }
+
+    @Test
+    public void checkFindDepartments() {
+        List<Department> departments = departmentMapper.findDepartments();
+        assertEquals(3, departments.size());
+
+        Department department = departments.get(1);
+        checkInitializedDepartment(department, 2L, "Департамент 2", LocalDate.of(2013, 5, 11));
+    }
+
+    private void checkInitializedDepartment(Department department, Long idToCompare, String nameToCompare, LocalDate creationDateToCompare) {
+        assertEquals(idToCompare, department.getId());
+        assertEquals(nameToCompare, department.getName());
+        assertEquals(creationDateToCompare, department.getCreationDate());
     }
 }
