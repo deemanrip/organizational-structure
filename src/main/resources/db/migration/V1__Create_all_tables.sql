@@ -1,41 +1,41 @@
 CREATE TABLE org_structure_schema.department (
-	id                   serial  NOT NULL ,
+	id                   bigserial  NOT NULL ,
 	name                 varchar(255)  NOT NULL ,
 	creation_date        date  NOT NULL ,
 	CONSTRAINT pk_department_id PRIMARY KEY ( id )
  );
 
 CREATE TABLE org_structure_schema.grade ( 
-	id                   serial  NOT NULL ,
+	id                   bigserial  NOT NULL ,
 	grade_value          varchar(1) DEFAULT 'A' NOT NULL ,
 	CONSTRAINT pk_grade_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_grade UNIQUE ( grade_value ) 
  );
 
 CREATE TABLE org_structure_schema."language" ( 
-	id                   serial  NOT NULL ,
+	id                   bigserial  NOT NULL ,
 	title                varchar(255)  NOT NULL ,
 	CONSTRAINT pk_language_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_language_title UNIQUE ( title ) 
  );
 
 CREATE TABLE org_structure_schema."position" ( 
-	id                   serial  NOT NULL ,
+	id                   bigserial  NOT NULL ,
 	title                varchar(255)  NOT NULL ,
 	CONSTRAINT pk_position_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_position UNIQUE ( title ) 
  );
 
 CREATE TABLE org_structure_schema.specialization ( 
-	id                   serial  NOT NULL ,
+	id                   bigserial  NOT NULL ,
 	title                varchar(255)  NOT NULL ,
 	CONSTRAINT pk_specialization_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_specialization UNIQUE ( title ) 
  );
 
 CREATE TABLE org_structure_schema.employee ( 
-	id                   serial  NOT NULL ,
-	department_id        integer  NOT NULL ,
+	id                   bigserial  NOT NULL ,
+	department_id        bigint  NOT NULL ,
 	last_name            varchar(255)  NOT NULL ,
 	first_name           varchar(255)  NOT NULL ,
 	mid_name             varchar(255)   ,
@@ -45,12 +45,12 @@ CREATE TABLE org_structure_schema.employee (
 	email                varchar(255)  NOT NULL ,
 	employment_date      date  NOT NULL ,
 	dismissal_date       date   ,
-	position_id          integer  NOT NULL ,
+	position_id          bigint  NOT NULL ,
 	salary               float8  NOT NULL ,
 	is_department_manager bool DEFAULT FALSE NOT NULL ,
-	line_manager_id      integer   ,
-	grade_id             integer  NOT NULL ,
-	specialization_id    integer  NOT NULL ,
+	line_manager_id      bigint   ,
+	grade_id             bigint  NOT NULL ,
+	specialization_id    bigint  NOT NULL ,
 	CONSTRAINT pk_employee_id PRIMARY KEY ( id ),
 	CONSTRAINT fk_employee_department FOREIGN KEY ( department_id ) REFERENCES org_structure_schema.department( id )  ,
 	CONSTRAINT fk_employee_position FOREIGN KEY ( position_id ) REFERENCES org_structure_schema."position"( id )  ,
@@ -60,8 +60,8 @@ CREATE TABLE org_structure_schema.employee (
  );
 
 CREATE TABLE org_structure_schema.employee_doc ( 
-	id                   serial  NOT NULL ,
-	employee_id          integer  NOT NULL ,
+	id                   bigserial  NOT NULL ,
+	employee_id          bigint  NOT NULL ,
 	file_name            varchar(255)  NOT NULL ,
 	doc                  bytea  NOT NULL ,
 	CONSTRAINT pk_employee_doc_id PRIMARY KEY ( id ),
@@ -69,9 +69,9 @@ CREATE TABLE org_structure_schema.employee_doc (
  );
 
 CREATE TABLE org_structure_schema.language_proficiency ( 
-	id                   serial  NOT NULL ,
-	employee_id          integer  NOT NULL ,
-	language_id          integer  NOT NULL ,
+	id                   bigserial  NOT NULL ,
+	employee_id          bigint  NOT NULL ,
+	language_id          bigint  NOT NULL ,
 	"level"              varchar(255)  NOT NULL ,
 	CONSTRAINT pk_language_proficiency_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_language_proficiency UNIQUE ( employee_id, language_id ) ,
@@ -80,8 +80,8 @@ CREATE TABLE org_structure_schema.language_proficiency (
  );
 
 CREATE TABLE org_structure_schema.previous_experience ( 
-	id                   serial  NOT NULL ,
-	employee_id          integer  NOT NULL ,
+	id                   bigserial  NOT NULL ,
+	employee_id          bigint  NOT NULL ,
 	company              varchar(255)  NOT NULL ,
 	start_date           date  NOT NULL ,
 	end_date             date  NOT NULL ,
@@ -90,19 +90,19 @@ CREATE TABLE org_structure_schema.previous_experience (
  );
 
 CREATE TABLE org_structure_schema.project ( 
-	id                   serial  NOT NULL ,
+	id                   bigserial  NOT NULL ,
 	title                varchar(255)  NOT NULL ,
-	manager_id           integer  NOT NULL ,
+	manager_id           bigint  NOT NULL ,
 	CONSTRAINT pk_project_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_project_title UNIQUE ( title ) ,
 	CONSTRAINT fk_project_employee FOREIGN KEY ( manager_id ) REFERENCES org_structure_schema.employee( id )  
  );
 
 CREATE TABLE org_structure_schema.internal_project_experience ( 
-	id                   serial  NOT NULL ,
-	employee_id          integer  NOT NULL ,
-	project_id           integer  NOT NULL ,
-	position_id          integer  NOT NULL ,
+	id                   bigserial  NOT NULL ,
+	employee_id          bigint  NOT NULL ,
+	project_id           bigint  NOT NULL ,
+	position_id          bigint  NOT NULL ,
 	start_date           date  NOT NULL ,
 	end_date             date   ,
 	CONSTRAINT pk_internal_project_experience_id PRIMARY KEY ( id ),
