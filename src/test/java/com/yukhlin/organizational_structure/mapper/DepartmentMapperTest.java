@@ -10,8 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,7 +29,7 @@ public class DepartmentMapperTest {
     @Test
     public void checkFindDepartments() {
         List<Department> departments = departmentMapper.findDepartments();
-        assertEquals(3, departments.size());
+        assertFalse(departments.isEmpty());
 
         Department department = departments.get(1);
         checkInitializedDepartment(department, 2L, "Департамент 2", LocalDate.of(2013, 5, 11));
