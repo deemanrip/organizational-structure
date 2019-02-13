@@ -14,6 +14,7 @@ public interface DepartmentMapper {
             id = "Department",
             value = {
             @Result(column = "id", property = "id", id = true),
+            @Result(column = "external_id", property = "externalId"),
             @Result(column = "name", property = "name"),
             @Result(column = "creation_date", property = "creationDate")
     })

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class Department {
 
     private Long id;
+    private String externalId;
     private String name;
     private LocalDate creationDate;
 }

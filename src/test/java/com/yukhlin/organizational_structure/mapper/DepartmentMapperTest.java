@@ -38,6 +38,7 @@ public class DepartmentMapperTest {
 
     private void checkInitializedDepartment(Department department, Long idToCompare, String nameToCompare, LocalDate creationDateToCompare) {
         assertEquals(idToCompare, department.getId());
+        assertNotNull(department.getExternalId());
         assertEquals(nameToCompare, department.getName());
         assertEquals(creationDateToCompare, department.getCreationDate());
     }
