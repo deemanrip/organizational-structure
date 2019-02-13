@@ -1,5 +1,8 @@
-CREATE TABLE org_structure_schema.department (
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE org_structure_schema.department ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	name                 varchar(255)  NOT NULL ,
 	creation_date        date  NOT NULL ,
 	CONSTRAINT pk_department_id PRIMARY KEY ( id )
@@ -7,6 +10,7 @@ CREATE TABLE org_structure_schema.department (
 
 CREATE TABLE org_structure_schema.grade ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	grade_value          varchar(1) DEFAULT 'A' NOT NULL ,
 	CONSTRAINT pk_grade_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_grade UNIQUE ( grade_value ) 
@@ -14,6 +18,7 @@ CREATE TABLE org_structure_schema.grade (
 
 CREATE TABLE org_structure_schema."language" ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	title                varchar(255)  NOT NULL ,
 	CONSTRAINT pk_language_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_language_title UNIQUE ( title ) 
@@ -21,6 +26,7 @@ CREATE TABLE org_structure_schema."language" (
 
 CREATE TABLE org_structure_schema."position" ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	title                varchar(255)  NOT NULL ,
 	CONSTRAINT pk_position_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_position UNIQUE ( title ) 
@@ -28,6 +34,7 @@ CREATE TABLE org_structure_schema."position" (
 
 CREATE TABLE org_structure_schema.specialization ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	title                varchar(255)  NOT NULL ,
 	CONSTRAINT pk_specialization_id PRIMARY KEY ( id ),
 	CONSTRAINT uq_specialization UNIQUE ( title ) 
@@ -35,6 +42,7 @@ CREATE TABLE org_structure_schema.specialization (
 
 CREATE TABLE org_structure_schema.employee ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	department_id        bigint  NOT NULL ,
 	last_name            varchar(255)  NOT NULL ,
 	first_name           varchar(255)  NOT NULL ,
@@ -61,6 +69,7 @@ CREATE TABLE org_structure_schema.employee (
 
 CREATE TABLE org_structure_schema.employee_doc ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	employee_id          bigint  NOT NULL ,
 	file_name            varchar(255)  NOT NULL ,
 	doc                  bytea  NOT NULL ,
@@ -70,6 +79,7 @@ CREATE TABLE org_structure_schema.employee_doc (
 
 CREATE TABLE org_structure_schema.language_proficiency ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	employee_id          bigint  NOT NULL ,
 	language_id          bigint  NOT NULL ,
 	"level"              varchar(255)  NOT NULL ,
@@ -79,8 +89,11 @@ CREATE TABLE org_structure_schema.language_proficiency (
 	CONSTRAINT fk_language_proficiency_language FOREIGN KEY ( language_id ) REFERENCES org_structure_schema."language"( id )  
  );
 
+ALTER TABLE org_structure_schema.language_proficiency ADD CONSTRAINT cns_language_proficiency CHECK ( level in ('Beginner', 'Elementary', 'Intermediate', 'Upper Intermediate', 'Advanced', 'Proficient') );
+
 CREATE TABLE org_structure_schema.previous_experience ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	employee_id          bigint  NOT NULL ,
 	company              varchar(255)  NOT NULL ,
 	start_date           date  NOT NULL ,
@@ -91,6 +104,7 @@ CREATE TABLE org_structure_schema.previous_experience (
 
 CREATE TABLE org_structure_schema.project ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	title                varchar(255)  NOT NULL ,
 	manager_id           bigint  NOT NULL ,
 	CONSTRAINT pk_project_id PRIMARY KEY ( id ),
@@ -100,6 +114,7 @@ CREATE TABLE org_structure_schema.project (
 
 CREATE TABLE org_structure_schema.internal_project_experience ( 
 	id                   bigserial  NOT NULL ,
+	external_id          uuid DEFAULT uuid_generate_v1mc() NOT NULL ,
 	employee_id          bigint  NOT NULL ,
 	project_id           bigint  NOT NULL ,
 	position_id          bigint  NOT NULL ,

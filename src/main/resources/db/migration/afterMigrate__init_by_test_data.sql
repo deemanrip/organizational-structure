@@ -121,39 +121,39 @@ insert into org_structure_schema.project(title, manager_id)
 values ('Проект 4', 9);
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (1, 1, 'UPPER_INTERMEDIATE');
+values (1, 1, 'Upper Intermediate');
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (1, 2, 'INTERMEDIATE');
+values (1, 2, 'Intermediate');
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (1, 3, 'ELEMENTARY');
+values (1, 3, 'Elementary');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (2, 1, 'UPPER_INTERMEDIATE');
+values (2, 1, 'Upper Intermediate');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (3, 1, 'UPPER_INTERMEDIATE');
+values (3, 1, 'Upper Intermediate');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (4, 1, 'INTERMEDIATE');
+values (4, 1, 'Intermediate');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (5, 1, 'INTERMEDIATE');
+values (5, 1, 'Intermediate');
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (5, 2, 'ELEMENTARY');
+values (5, 2, 'Elementary');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (6, 1, 'ELEMENTARY');
+values (6, 1, 'Elementary');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (7, 1, 'INTERMEDIATE');
+values (7, 1, 'Intermediate');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (8, 1, 'ADVANCED');
+values (8, 1, 'Elementary');
 
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (10, 1, 'INTERMEDIATE');
+values (10, 1, 'Intermediate');
 insert into org_structure_schema.language_proficiency (employee_id, language_id, level)
-values (10, 3, 'ELEMENTARY');
+values (10, 3, 'Elementary');
 
 insert into org_structure_schema.previous_experience (employee_id, company, start_date, end_date)
 values (1, 'ООО Компания А', '2008-01-25', '2010-05-01');
