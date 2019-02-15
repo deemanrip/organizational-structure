@@ -1,19 +1,18 @@
-package com.yukhlin.organizational_structure.data.domain;
+package com.yukhlin.orgstructure.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class Department {
+public class DepartmentDto {
 
-    private Long id;
-    private UUID externalId;
+    private String id;
     private String name;
     private LocalDate creationDate;
+
 }

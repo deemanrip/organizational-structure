@@ -1,4 +1,4 @@
-package com.yukhlin.organizational_structure;
+package com.yukhlin.orgstructure;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

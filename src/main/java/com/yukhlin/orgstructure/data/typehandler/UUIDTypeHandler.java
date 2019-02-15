@@ -1,4 +1,4 @@
-package com.yukhlin.organizational_structure.data.typehandler;
+package com.yukhlin.orgstructure.data.typehandler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

@@ -1,7 +1,6 @@
-package com.yukhlin.organizational_structure.mapper;
+package com.yukhlin.orgstructure.data.mapper;
 
-import com.yukhlin.organizational_structure.data.domain.Department;
-import com.yukhlin.organizational_structure.data.mapper.DepartmentMapper;
+import com.yukhlin.orgstructure.data.domain.Department;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class DepartmentMapperTest {
     public void checkFindDepartmentById() {
         Department department = departmentMapper.findById(1L);
         assertNotNull(department);
-        checkInitializedDepartment(department, 1L, "Департамент 1", LocalDate.of(2014, 12, 28));
+        checkDepartmentEntity(department, 1L, "Департамент 1", LocalDate.of(2014, 12, 28));
     }
 
     @Test
@@ -33,10 +32,10 @@ public class DepartmentMapperTest {
         assertFalse(departments.isEmpty());
 
         Department department = departments.get(1);
-        checkInitializedDepartment(department, 2L, "Департамент 2", LocalDate.of(2013, 5, 11));
+        checkDepartmentEntity(department, 2L, "Департамент 2", LocalDate.of(2013, 5, 11));
     }
 
-    private void checkInitializedDepartment(Department department, Long idToCompare, String nameToCompare, LocalDate creationDateToCompare) {
+    private void checkDepartmentEntity(Department department, Long idToCompare, String nameToCompare, LocalDate creationDateToCompare) {
         assertEquals(idToCompare, department.getId());
         assertNotNull(department.getExternalId());
         assertEquals(nameToCompare, department.getName());

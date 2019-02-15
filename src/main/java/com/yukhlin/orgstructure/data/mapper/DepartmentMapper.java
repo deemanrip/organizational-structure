@@ -1,7 +1,7 @@
-package com.yukhlin.organizational_structure.data.mapper;
+package com.yukhlin.orgstructure.data.mapper;
 
-import com.yukhlin.organizational_structure.data.domain.Department;
-import com.yukhlin.organizational_structure.data.typehandler.UUIDTypeHandler;
+import com.yukhlin.orgstructure.data.domain.Department;
+import com.yukhlin.orgstructure.data.typehandler.UUIDTypeHandler;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +17,6 @@ public interface DepartmentMapper {
             value = {
             @Result(column = "id", property = "id", id = true),
             @Result(column = "external_id", property = "externalId", typeHandler = UUIDTypeHandler.class),
-            @Result(column = "name", property = "name"),
             @Result(column = "creation_date", property = "creationDate")
     })
     @Select("select * from org_structure_schema.department where id = #{id}")
