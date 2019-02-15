@@ -1,6 +1,7 @@
 package com.yukhlin.organizational_structure.mapper;
 
-import com.yukhlin.organizational_structure.domain.Department;
+import com.yukhlin.organizational_structure.data.domain.Department;
+import com.yukhlin.organizational_structure.data.mapper.DepartmentMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,11 @@
-package com.yukhlin.organizational_structure.domain;
+package com.yukhlin.organizational_structure.data.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 public class Department {
 
     private Long id;
-    private String externalId;
+    private UUID externalId;
     private String name;
     private LocalDate creationDate;
 }
