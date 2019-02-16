@@ -16,6 +16,7 @@ buildscript {
 
 plugins {
     id "java"
+    id "idea"
     id "org.springframework.boot" version "2.1.2.RELEASE"
     id "io.spring.dependency-management" version "1.0.6.RELEASE"
     id "war"
@@ -28,7 +29,15 @@ version = "0.0.1-SNAPSHOT"
 sourceCompatibility = rootProject.javaLanguageLevel
 
 repositories {
+    mavenLocal()
     mavenCentral()
+}
+
+sourceSets.main.java.srcDir new File(buildDir, 'generated/javacc')
+idea {
+    module {
+        generatedSourceDirs += file('build/generated/javacc')
+    }
 }
 
 dependencies {
