@@ -23,7 +23,7 @@ public class DepartmentMapperTest {
 
     @Test
     public void checkEntityDtoConversion() {
-        Department department = DepartmentFactory.createTestDepartment();
+        Department department = DepartmentFactory.createTestDepartmentWithUUID();
         DepartmentDto departmentDto = departmentMapper.departmentToDepartmentDto(department);
         checkConvertedObjects(department, departmentDto);
     }

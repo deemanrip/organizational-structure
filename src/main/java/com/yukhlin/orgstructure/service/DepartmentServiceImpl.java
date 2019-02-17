@@ -42,11 +42,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void updateDepartment(Department department) {
-        departmentMapper.updateDepartment(department);
+        departmentMapper.updateDepartmentByExternalId(department);
     }
 
     @Override
     public void deleteDepartment(UUID externalId) {
-        departmentMapper.deleteDepartment(externalId);
+        departmentMapper.deleteDepartmentByExternalId(externalId);
     }
 }

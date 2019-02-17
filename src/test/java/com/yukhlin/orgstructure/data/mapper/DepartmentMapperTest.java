@@ -24,30 +24,44 @@ public class DepartmentMapperTest {
     public void checkFindDepartmentById() {
         Department department = departmentMapper.findById(1L);
         assertNotNull(department);
-        checkDepartmentEntity(department, 1L, "Департамент 1", LocalDate.of(2014, 12, 28));
+        checkSelectedDepartmentEntity(department, 1L, "Департамент 1", LocalDate.of(2014, 12, 28));
     }
 
     @Test
     public void checkFindDepartments() {
         List<Department> departments = departmentMapper.findDepartments();
         assertFalse(departments.isEmpty());
-
-        Department department = departments.get(1);
-        checkDepartmentEntity(department, 2L, "Департамент 2", LocalDate.of(2013, 5, 11));
     }
 
     @Test
     public void checkInsertDepartment() {
-        Department department = DepartmentFactory.createTestDepartment();
+        Department department = DepartmentFactory.createTestDepartmentWithoutUUID();
 
         assertNull(department.getId());
         departmentMapper.saveDepartment(department);
         assertNotNull(department.getId());
 
-        departmentMapper.deleteDepartment(department.getExternalId());
+        departmentMapper.deleteDepartmentById(department.getId());
     }
 
-    private void checkDepartmentEntity(Department department, Long idToCompare, String nameToCompare, LocalDate creationDateToCompare) {
+    @Test
+    public void checkUpdateDepartment() {
+        Department department = DepartmentFactory.createTestDepartmentWithoutUUID();
+        departmentMapper.saveDepartment(department);
+
+        String updatedName = "Updated Name";
+        LocalDate updatedCreationDate = LocalDate.of(2010, 5, 20);
+        department.setName(updatedName);
+        department.setCreationDate(updatedCreationDate);
+
+        departmentMapper.updateDepartmentById(department);
+        department = departmentMapper.findById(department.getId());
+        checkSelectedDepartmentEntity(department, department.getId(), updatedName, updatedCreationDate);
+
+        departmentMapper.deleteDepartmentById(department.getId());
+    }
+
+    private void checkSelectedDepartmentEntity(Department department, Long idToCompare, String nameToCompare, LocalDate creationDateToCompare) {
         assertEquals(idToCompare, department.getId());
         assertNotNull(department.getExternalId());
         assertEquals(nameToCompare, department.getName());

@@ -30,19 +30,26 @@ public interface DepartmentMapper {
     @Select("select * from org_structure_schema.department")
     List<Department> findDepartments();
 
-    //TODO UUID should also been initialized in object after insertion
+    //TODO UUID should also be initialized in object after insertion
     @SelectKey(statement = "select lastval()", keyProperty = "id", before = false, resultType = Long.class)
-    @Insert("insert into org_structure_schema.department(external_id, name, creation_date) " +
-            "values (#{externalId, typeHandler = com.yukhlin.orgstructure.data.typehandler.UUIDTypeHandler}, " +
-            "#{name}, #{creationDate})")
+    @Insert("insert into org_structure_schema.department(name, creation_date) " +
+            "values (#{name}, #{creationDate})")
     void saveDepartment(Department department);
 
     @Update("update org_structure_schema.department " +
             "set name = #{name}, creation_date = #{creationDate} " +
             "where external_id = #{externalId, typeHandler = com.yukhlin.orgstructure.data.typehandler.UUIDTypeHandler}")
-    void updateDepartment(Department department);
+    void updateDepartmentByExternalId(Department department);
+
+    @Update("update org_structure_schema.department " +
+            "set name = #{name}, creation_date = #{creationDate} " +
+            "where id = #{id}")
+    void updateDepartmentById(Department department);
 
     @Delete("delete from org_structure_schema.department where external_id = #{externalId}")
-    void deleteDepartment(@Param("externalId") UUID externalId);
+    void deleteDepartmentByExternalId(@Param("externalId") UUID externalId);
+
+    @Delete("delete from org_structure_schema.department where id = #{id}")
+    void deleteDepartmentById(@Param("id") Long id);
 
 }

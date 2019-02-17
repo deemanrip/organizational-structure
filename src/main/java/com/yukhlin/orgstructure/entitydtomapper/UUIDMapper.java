@@ -8,10 +8,10 @@ import java.util.UUID;
 public class UUIDMapper {
 
     public String asString(UUID uuid) {
-        return uuid.toString();
+        return uuid == null ? null : uuid.toString();
     }
 
     public UUID asUUID(String uuid) {
-        return UUID.fromString(uuid);
+        return uuid == null ? null : UUID.fromString(uuid);
     }
 }
