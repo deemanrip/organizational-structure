@@ -49,4 +49,18 @@ public class DepartmentController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity updateDepartment(@RequestBody DepartmentDto departmentDto) {
+        departmentService.updateDepartment( departmentMapper.departmentDtoToDepartment(departmentDto) );
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteDepartment(@PathVariable String id) {
+        departmentService.deleteDepartment(UUID.fromString(id));
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }
