@@ -30,6 +30,7 @@ public interface DepartmentMapper {
     @Select("select * from org_structure_schema.department")
     List<Department> findDepartments();
 
+    //TODO UUID should also been initialized in object after insertion
     @SelectKey(statement = "select lastval()", keyProperty = "id", before = false, resultType = Long.class)
     @Insert("insert into org_structure_schema.department(external_id, name, creation_date) " +
             "values (#{externalId, typeHandler = com.yukhlin.orgstructure.data.typehandler.UUIDTypeHandler}, " +
