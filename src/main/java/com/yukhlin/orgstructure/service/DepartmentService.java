@@ -10,5 +10,8 @@ public interface DepartmentService {
     Department findById(Long id);
     Department findByExternalId(UUID externalId);
     List<Department> findDepartments();
+    void saveDepartment(Department department);
+    void updateDepartment(Department department);
+    void deleteDepartment(UUID externalId);
 
 }

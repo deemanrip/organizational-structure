@@ -2,14 +2,12 @@ package com.yukhlin.orgstructure.entitydtomapper;
 
 import com.yukhlin.orgstructure.data.domain.Department;
 import com.yukhlin.orgstructure.dto.DepartmentDto;
+import com.yukhlin.orgstructure.factory.DepartmentFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.time.LocalDate;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,19 +20,9 @@ public class DepartmentMapperTest {
 
     @Test
     public void checkConversion() {
-        Department department = createDepartment();
+        Department department = DepartmentFactory.createTestDepartment();
         DepartmentDto departmentDto = departmentMapper.departmentToDepartmentDto(department);
         checkDepartmentDto(department, departmentDto);
-    }
-
-    private Department createDepartment() {
-        Department department = new Department();
-        department.setId(1L);
-        department.setExternalId(UUID.randomUUID());
-        department.setCreationDate(LocalDate.now());
-        department.setName("Test department");
-
-        return department;
     }
 
     private void checkDepartmentDto(Department department, DepartmentDto departmentDto) {

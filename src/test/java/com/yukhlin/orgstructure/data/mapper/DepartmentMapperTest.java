@@ -1,6 +1,7 @@
 package com.yukhlin.orgstructure.data.mapper;
 
 import com.yukhlin.orgstructure.data.domain.Department;
+import com.yukhlin.orgstructure.factory.DepartmentFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,17 @@ public class DepartmentMapperTest {
 
         Department department = departments.get(1);
         checkDepartmentEntity(department, 2L, "Департамент 2", LocalDate.of(2013, 5, 11));
+    }
+
+    @Test
+    public void checkInsertDepartment() {
+        Department department = DepartmentFactory.createTestDepartment();
+
+        assertNull(department.getId());
+        departmentMapper.saveDepartment(department);
+        assertNotNull(department.getId());
+
+        departmentMapper.deleteDepartment(department.getExternalId());
     }
 
     private void checkDepartmentEntity(Department department, Long idToCompare, String nameToCompare, LocalDate creationDateToCompare) {

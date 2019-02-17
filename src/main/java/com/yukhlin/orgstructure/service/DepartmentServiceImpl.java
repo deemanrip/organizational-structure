@@ -15,6 +15,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     private DepartmentMapper departmentMapper;
 
+    @Autowired
+    public DepartmentServiceImpl(DepartmentMapper departmentMapper) {
+        this.departmentMapper = departmentMapper;
+    }
+
     @Override
     public Department findById(Long id) {
         return departmentMapper.findById(id);
@@ -30,8 +35,18 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentMapper.findDepartments();
     }
 
-    @Autowired
-    public DepartmentServiceImpl(DepartmentMapper departmentMapper) {
-        this.departmentMapper = departmentMapper;
+    @Override
+    public void saveDepartment(Department department) {
+        departmentMapper.saveDepartment(department);
+    }
+
+    @Override
+    public void updateDepartment(Department department) {
+        departmentMapper.updateDepartment(department);
+    }
+
+    @Override
+    public void deleteDepartment(UUID externalId) {
+        departmentMapper.deleteDepartment(externalId);
     }
 }

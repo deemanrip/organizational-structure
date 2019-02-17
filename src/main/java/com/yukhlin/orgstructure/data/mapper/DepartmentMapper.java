@@ -30,4 +30,18 @@ public interface DepartmentMapper {
     @Select("select * from org_structure_schema.department")
     List<Department> findDepartments();
 
+    @SelectKey(statement = "select lastval()", keyProperty = "id", before = false, resultType = Long.class)
+    @Insert({"insert into org_structure_schema.department(external_id, name, creation_date) " +
+            " values (#{externalId, typeHandler = com.yukhlin.orgstructure.data.typehandler.UUIDTypeHandler}, " +
+            " #{name}, #{creationDate})"})
+    void saveDepartment(Department department);
+
+    @Update("update org_structure_schema.department " +
+            "set name = #{name}, creation_date = #{creationDate} " +
+            "where external_id = #{externalId, typeHandler = com.yukhlin.orgstructure.data.typehandler.UUIDTypeHandler}")
+    void updateDepartment(Department department);
+
+    @Delete("delete from org_structure_schema.department where external_id = #{externalId}")
+    void deleteDepartment(@Param("externalId") UUID externalId);
+
 }

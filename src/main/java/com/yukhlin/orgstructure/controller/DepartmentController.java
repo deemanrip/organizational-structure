@@ -22,6 +22,12 @@ public class DepartmentController {
     private DepartmentService departmentService;
     private DepartmentMapper departmentMapper;
 
+    @Autowired
+    public DepartmentController(DepartmentService departmentService, DepartmentMapper departmentMapper) {
+        this.departmentService = departmentService;
+        this.departmentMapper = departmentMapper;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<DepartmentDto>> getDepartments() {
         List<DepartmentDto> departments = departmentService.findDepartments().stream()
@@ -39,9 +45,4 @@ public class DepartmentController {
         return new ResponseEntity<>(departmentDto, HttpStatus.OK);
     }
 
-    @Autowired
-    public DepartmentController(DepartmentService departmentService, DepartmentMapper departmentMapper) {
-        this.departmentService = departmentService;
-        this.departmentMapper = departmentMapper;
-    }
 }
