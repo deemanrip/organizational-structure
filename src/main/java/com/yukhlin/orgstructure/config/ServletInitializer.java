@@ -1,5 +1,6 @@
-package com.yukhlin.orgstructure;
+package com.yukhlin.orgstructure.config;
 
+import com.yukhlin.orgstructure.OrganizationalStructureApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
